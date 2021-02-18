@@ -1,31 +1,32 @@
 <template>
     <div>
-        <div class="shadow p-3 mb-5 bg-white rounded">
-        <div class="row justify-content-end text-right">
-            <div class="col-3">
-               <p class="text-right font-weight-bold" style="padding-top:10px">Records per page:
-               </p>
-            </div>
-            <div class="col-3">
-                <select v-model="view_method" class="form-control" >
-                    <option value="pagination">Pagination</option>
-                    <option value="infinte_scroll">Infinite records</option>
-                </select>
+        <div class="shadow p-3 mb-5 bg-white rounded">class= ""
+            <div class=" row justify-content-end text-right">
+                <div class="col-4">
+                    <p class="text-right font-weight-bold" style="padding-top:10px">Records per page:
+                    </p>
                 </div>
-        </div>
+                <div class="col-3">
+                    <select v-model="view_method" class="form-control" >
+                        <option value="pagination">Pagination</option>
+                        <option value="infinte_scroll">Infinite records</option>
+                    </select>
+                </div>
+            </div>
+
             <table class="right table">
                 <thead class="thead-dark">
                     <tr>
-                        <th scope="col">
-                            <div>
-                                <a @click.prevent="changeSort('date')" href="">Date</a>
-                                <span
+                        <th  scope="col">
+                            <div class="row">
+                                <a class="col-7" @click.prevent="changeSort('date')" href="">Date</a>
+                                <span class="col-2"
                                 v-if="
                                     this.params.sort_field == 'date' &&
                                         this.params.sort_direction == 'asc'
                                 "
                                     >&uarr;</span>
-                                <span
+                                <span class="col-2"
                                     v-if="
                                         this.params.sort_field == 'date' &&
                                             this.params.sort_direction == 'desc'
@@ -34,8 +35,9 @@
                             </div>
                         </th>
                         <th scope="col">
-                            <div>
-                                <a @click.prevent="changeSort('gender') "href="#">Category</a>
+                            <div class="row text-center">
+                                <a class="col-9" @click.prevent="changeSort('gender') "href="#">
+                                Category
                                 <span
                                 v-if="
                                     this.params.sort_field == 'gender' &&
@@ -47,19 +49,19 @@
                                         this.params.sort_field == 'gender' &&
                                             this.params.sort_direction == 'desc'
                                     "
-                                >&darr;</span>
+                                >&darr;</span></a>
                             </div>
                         </th>
                         <th scope="col">
-                            <div>
-                                <a @click.prevent="changeSort('type')" href="#">Type</a>
-                                <span
+                            <div class="row justify-content-end ">
+                                <a class="" @click.prevent="changeSort('type')" href="#">Type</a>
+                                <span class=""
                                 v-if="
                                     this.params.sort_field == 'type' &&
                                         this.params.sort_direction == 'asc'
                                 "
                                     >&uarr;</span>
-                                <span
+                                <span class=""
                                     v-if="
                                         this.params.sort_field == 'type' &&
                                             this.params.sort_direction == 'desc'
@@ -68,15 +70,15 @@
                             </div>
                         </th>
                         <th scope="col">
-                            <div>
-                                <a @click.prevent="changeSort('ranking')" href="#">Ranking</a>
-                                <span
+                            <div class="row justify-content-end">
+                                <a class="" @click.prevent="changeSort('ranking')" href="#">Ranking</a>
+                                <span class=""
                                 v-if="
                                     this.params.sort_field == 'ranking' &&
                                         this.params.sort_direction == 'asc'
                                 "
                                     >&uarr;</span>
-                                <span
+                                <span class=""
                                     v-if="
                                         this.params.sort_field == 'ranking' &&
                                             this.params.sort_direction == 'desc'
@@ -85,15 +87,15 @@
                             </div>
                         </th>
                         <th scope="col">
-                            <div>
-                                <a @click.prevent="changeSort('player')" href="#">Player</a>
-                                <span
+                            <div class="row justify-content-end">
+                                <a class="" @click.prevent="changeSort('player')" href="#">Player</a>
+                                <span class=""
                                 v-if="
                                     this.params.sort_field == 'player' &&
                                         this.params.sort_direction == 'asc'
                                 "
                                     >&uarr;</span>
-                                <span
+                                <span class=""
                                     v-if="
                                         this.params.sort_field == 'player' &&
                                             this.params.sort_direction == 'desc'
@@ -102,15 +104,15 @@
                             </div>
                         </th>
                         <th scope="col">
-                            <div>
-                                <a @click.prevent="changeSort('country')" href="#">Country</a>
-                                <span
+                            <div class="row justify-content-end">
+                                <a class="" @click.prevent="changeSort('country')" href="#">Country</a>
+                                <span class=""
                                 v-if="
                                     this.params.sort_field == 'country' &&
                                         this.params.sort_direction == 'asc'
                                 "
                                     >&uarr;</span>
-                                <span
+                                <span class=""
                                     v-if="
                                         this.params.sort_field == 'country' &&
                                             this.params.sort_direction == 'desc'
@@ -119,15 +121,15 @@
                             </div>
                         </th>
                         <th scope="col">
-                            <div>
-                                <a @click.prevent="changeSort('age')" href="#">Age</a>
-                                <span
+                            <div class="row justify-content-end">
+                                <a class="" @click.prevent="changeSort('age')" href="#">Age</a>
+                                <span class=""
                                 v-if="
                                     this.params.sort_field == 'age' &&
                                         this.params.sort_direction == 'asc'
                                 "
                                     >&uarr;</span>
-                                <span
+                                <span class=""
                                     v-if="
                                         this.params.sort_field == 'ages' &&
                                             this.params.sort_direction == 'desc'
@@ -136,15 +138,15 @@
                             </div>
                         </th>
                         <th scope="col">
-                            <div>
-                                <a @click.prevent="changeSort('points')" href="#">Points</a>
-                                <span
+                            <div class="row justify-content-end">
+                                <a class="" @click.prevent="changeSort('points')" href="#">Points</a>
+                                <span class=""
                                 v-if="
                                     this.params.sort_field == 'points' &&
                                         this.params.sort_direction == 'asc'
                                 "
                                     >&uarr;</span>
-                                <span
+                                <span class=""
                                     v-if="
                                         this.params.sort_field == 'points' &&
                                             this.params.sort_direction == 'desc'
@@ -153,15 +155,15 @@
                             </div>
                         </th>
                         <th scope="col">
-                            <div>
-                                <a href="#" @click.prevent="changeSort('tournaments')" >Tournaments</a>
-                                <span
+                            <div class="row justify-content-end">
+                                <a class="" href="#" @click.prevent="changeSort('tournaments')" >Tournaments</a>
+                                <span class=""
                                 v-if="
                                     this.params.sort_field == 'tournaments' &&
                                         this.params.sort_direction == 'asc'
                                 "
                                     >&uarr;</span>
-                                <span
+                                <span class=""
                                     v-if="
                                         this.params.sort_field == 'tournaments' &&
                                             this.params.sort_direction == 'desc'
@@ -169,7 +171,7 @@
                                 >&darr;</span>
                             </div>
                         </th>
-                        <th scope="col">
+                        <th class="text-right" scope="col">
                             Actions
                         </th>
 
@@ -178,7 +180,7 @@
 
                 <tbody>
                     <tr>
-                        <th>
+                        <th class=" justify-content-end">
                             <select v-model="params.date" class="form-control">
                                 <option value="">All dates</option>
                                 <option
@@ -188,7 +190,7 @@
                                 >
                             </select>
                         </th>
-                        <th>
+                        <th class=" justify-content-end">
                             <select
                                 v-model="params.gender"
                                 class="form-control"
@@ -201,7 +203,7 @@
                                 >
                             </select>
                         </th>
-                        <th>
+                        <th class=" justify-content-end">
                             <select v-model="params.type" class="form-control">
                                 <option value="">All Types</option>
                                 <option
@@ -211,18 +213,18 @@
                                 >
                             </select>
                         </th>
-                        <th>
+                        <th class=" justify-content-end">
                             <div class="row">
-                                 <span class="col-md-6">Min</span><input min="0" max="100" v-model="ranges.ranking_min" type="number"  class="form-control col-md-6 text-center " style="padding: 0px"></input>
+                                <span class="col-md-6">Min</span><input min="0" max="100" v-model="ranges.ranking_min" type="number"  class="form-control col-md-6 text-center " style="padding: 0px"></input>
                             </div>
                             <div class="row">
-                                 <span class="col-md-6">Max</span><input min="0" max="100" v-model="ranges.ranking_max" type="number"  class="form-control col-md-6 text-center" style="padding: 0px"></input>
-                           </div>
+                                <span class="col-md-6">Max</span><input min="0" max="100" v-model="ranges.ranking_max" type="number"  class="form-control col-md-6 text-center" style="padding: 0px"></input>
+                        </div>
                         </th>
-                        <th>
+                        <th class=" justify-content-end">
                             <input v-model="search" class="form-control"></input>
                         </th>
-                        <th>
+                        <th class=" justify-content-end">
                             <select
                                 v-model="params.country"
                                 class="form-control"
@@ -235,33 +237,33 @@
                                 >
                             </select>
                         </th>
-                        <th>
+                        <th class=" justify-content-end">
                             <div class="row">
-                                 <span class="col-md-6">Min</span><input v-model="ranges.age_min" type="number"  class="form-control col-md-6 text-center " style="padding: 0px"></input>
+                                <div class="col">Min<input v-model="ranges.age_min" type="number"  class="form-control text-center " style="padding: 0px; margin:auto; width:50%"></input></div>
                             </div>
                             <div class="row">
-                                 <span class="col-md-6">Max</span><input v-model="ranges.age_max" type="number" class="form-control col-md-6 text-center" style="padding: 0px"></input>
-                           </div>
+                                <div class="col">Max</span><input v-model="ranges.age_max" type="number" class="form-control text-center" style="padding: 0px; margin:auto; width:50%"></input></div>
+                        </div>
                         </th>
-                        <th>
-                            <div class="row">
-                                 <span class="col-md-6">Min</span><input v-model="ranges.points_min" type="number" class="form-control col-md-6 text-center " style="padding: 0px"></input>
+                        <th class=" justify-content-end">
+                            <div class="row text-right">
+                                <span class="col-md-6">Min</span><input v-model="ranges.points_min" type="number" class="form-control col-md-6 text-center " style="padding: 0px"></input>
                             </div>
-                            <div class="row">
-                                 <span class="col-md-6">Max</span><input v-model="ranges.points_max" type="number"  class="form-control col-md-6 text-center" style="padding: 0px"></input>
-                           </div>
+                            <div class="row text-right">
+                                <span class="col-md-6">Max</span><input v-model="ranges.points_max" type="number"  class="form-control col-md-6 text-center" style="padding: 0px"></input>
+                        </div>
                         </th>
-                        <th>
+                        <th class=" justify-content-end">
                             <div class="row">
-                                 <span class="col-md-6">Min</span><input v-model="ranges.tournaments_min" type="number"  class="form-control col-md-6 text-center " style="padding: 0px"></input>
+                                <span class="col-md-6">Min</span><input v-model="ranges.tournaments_min" type="number"  class="form-control col-md-6 text-center " style="padding: 0px"></input>
                             </div>
                             <div class="row">
-                                 <span class="col-md-6">Max</span><input v-model="ranges.tournaments_max" type="number" class="form-control col-md-6 text-center" style="padding: 0px"></input>
-                           </div>
+                                <span class="col-md-6">Max</span><input v-model="ranges.tournaments_max" type="number" class="form-control col-md-6 text-center" style="padding: 0px"></input>
+                        </div>
                         </th>
                     </tr>
                     <tr v-for="ranking in rankings.data">
-                        <td scope="row">{{ ranking.date }}</td>
+                        <td  scope="row">{{ ranking.date }}</td>
                         <td class="text-center">{{ ranking.gender }}</td>
                         <td class="text-right">{{ ranking.type }}</td>
                         <td class="text-right">{{ ranking.ranking }}</td>
@@ -417,9 +419,9 @@ export default {
                     this.last_page = response.data.meta.last_page;
                 });
         },
-         addResults(page) {
+        addResults(page) {
             axios
-                 .get(
+                .get(
                     "/api/rankings",
                     {
                         params: {
@@ -472,7 +474,7 @@ export default {
                 })
                 .then(result => {
                     if(result.isConfirmed){
-                         axios
+                        axios
                         .delete("/api/rankings/" + ranking_id)
                         .then(response => {
                             this.$swal.fire({

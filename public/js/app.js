@@ -2602,6 +2602,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -25656,7 +25658,7 @@ var render = function() {
     _vm._v(" "),
     _c(
       "div",
-      { staticClass: "container", staticStyle: { "margin-top": "10px" } },
+      { staticClass: "container-fluid", staticStyle: { "margin-top": "10px" } },
       [_c("transition-page", [_c("router-view")], 1)],
       1
     ),
@@ -26483,7 +26485,8 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", { staticClass: "shadow p-3 mb-5 bg-white rounded" }, [
-      _c("div", { staticClass: "row justify-content-end text-right" }, [
+      _vm._v('class= ""\n        '),
+      _c("div", { staticClass: " row justify-content-end text-right" }, [
         _vm._m(0),
         _vm._v(" "),
         _c("div", { staticClass: "col-3" }, [
@@ -26532,10 +26535,11 @@ var render = function() {
         _c("thead", { staticClass: "thead-dark" }, [
           _c("tr", [
             _c("th", { attrs: { scope: "col" } }, [
-              _c("div", [
+              _c("div", { staticClass: "row" }, [
                 _c(
                   "a",
                   {
+                    staticClass: "col-7",
                     attrs: { href: "" },
                     on: {
                       click: function($event) {
@@ -26549,21 +26553,22 @@ var render = function() {
                 _vm._v(" "),
                 this.params.sort_field == "date" &&
                 this.params.sort_direction == "asc"
-                  ? _c("span", [_vm._v("↑")])
+                  ? _c("span", { staticClass: "col-2" }, [_vm._v("↑")])
                   : _vm._e(),
                 _vm._v(" "),
                 this.params.sort_field == "date" &&
                 this.params.sort_direction == "desc"
-                  ? _c("span", [_vm._v("↓")])
+                  ? _c("span", { staticClass: "col-2" }, [_vm._v("↓")])
                   : _vm._e()
               ])
             ]),
             _vm._v(" "),
             _c("th", { attrs: { scope: "col" } }, [
-              _c("div", [
+              _c("div", { staticClass: "row text-center" }, [
                 _c(
                   "a",
                   {
+                    staticClass: "col-9",
                     attrs: { href: "#" },
                     on: {
                       click: function($event) {
@@ -26572,23 +26577,26 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v("Category")]
-                ),
-                _vm._v(" "),
-                this.params.sort_field == "gender" &&
-                this.params.sort_direction == "asc"
-                  ? _c("span", [_vm._v("↑")])
-                  : _vm._e(),
-                _vm._v(" "),
-                this.params.sort_field == "gender" &&
-                this.params.sort_direction == "desc"
-                  ? _c("span", [_vm._v("↓")])
-                  : _vm._e()
+                  [
+                    _vm._v(
+                      "\n                            Category\n                            "
+                    ),
+                    this.params.sort_field == "gender" &&
+                    this.params.sort_direction == "asc"
+                      ? _c("span", [_vm._v("↑")])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    this.params.sort_field == "gender" &&
+                    this.params.sort_direction == "desc"
+                      ? _c("span", [_vm._v("↓")])
+                      : _vm._e()
+                  ]
+                )
               ])
             ]),
             _vm._v(" "),
             _c("th", { attrs: { scope: "col" } }, [
-              _c("div", [
+              _c("div", { staticClass: "row justify-content-end " }, [
                 _c(
                   "a",
                   {
@@ -26605,18 +26613,18 @@ var render = function() {
                 _vm._v(" "),
                 this.params.sort_field == "type" &&
                 this.params.sort_direction == "asc"
-                  ? _c("span", [_vm._v("↑")])
+                  ? _c("span", {}, [_vm._v("↑")])
                   : _vm._e(),
                 _vm._v(" "),
                 this.params.sort_field == "type" &&
                 this.params.sort_direction == "desc"
-                  ? _c("span", [_vm._v("↓")])
+                  ? _c("span", {}, [_vm._v("↓")])
                   : _vm._e()
               ])
             ]),
             _vm._v(" "),
             _c("th", { attrs: { scope: "col" } }, [
-              _c("div", [
+              _c("div", { staticClass: "row justify-content-end" }, [
                 _c(
                   "a",
                   {
@@ -26633,18 +26641,18 @@ var render = function() {
                 _vm._v(" "),
                 this.params.sort_field == "ranking" &&
                 this.params.sort_direction == "asc"
-                  ? _c("span", [_vm._v("↑")])
+                  ? _c("span", {}, [_vm._v("↑")])
                   : _vm._e(),
                 _vm._v(" "),
                 this.params.sort_field == "ranking" &&
                 this.params.sort_direction == "desc"
-                  ? _c("span", [_vm._v("↓")])
+                  ? _c("span", {}, [_vm._v("↓")])
                   : _vm._e()
               ])
             ]),
             _vm._v(" "),
             _c("th", { attrs: { scope: "col" } }, [
-              _c("div", [
+              _c("div", { staticClass: "row justify-content-end" }, [
                 _c(
                   "a",
                   {
@@ -26661,18 +26669,18 @@ var render = function() {
                 _vm._v(" "),
                 this.params.sort_field == "player" &&
                 this.params.sort_direction == "asc"
-                  ? _c("span", [_vm._v("↑")])
+                  ? _c("span", {}, [_vm._v("↑")])
                   : _vm._e(),
                 _vm._v(" "),
                 this.params.sort_field == "player" &&
                 this.params.sort_direction == "desc"
-                  ? _c("span", [_vm._v("↓")])
+                  ? _c("span", {}, [_vm._v("↓")])
                   : _vm._e()
               ])
             ]),
             _vm._v(" "),
             _c("th", { attrs: { scope: "col" } }, [
-              _c("div", [
+              _c("div", { staticClass: "row justify-content-end" }, [
                 _c(
                   "a",
                   {
@@ -26689,18 +26697,18 @@ var render = function() {
                 _vm._v(" "),
                 this.params.sort_field == "country" &&
                 this.params.sort_direction == "asc"
-                  ? _c("span", [_vm._v("↑")])
+                  ? _c("span", {}, [_vm._v("↑")])
                   : _vm._e(),
                 _vm._v(" "),
                 this.params.sort_field == "country" &&
                 this.params.sort_direction == "desc"
-                  ? _c("span", [_vm._v("↓")])
+                  ? _c("span", {}, [_vm._v("↓")])
                   : _vm._e()
               ])
             ]),
             _vm._v(" "),
             _c("th", { attrs: { scope: "col" } }, [
-              _c("div", [
+              _c("div", { staticClass: "row justify-content-end" }, [
                 _c(
                   "a",
                   {
@@ -26717,18 +26725,18 @@ var render = function() {
                 _vm._v(" "),
                 this.params.sort_field == "age" &&
                 this.params.sort_direction == "asc"
-                  ? _c("span", [_vm._v("↑")])
+                  ? _c("span", {}, [_vm._v("↑")])
                   : _vm._e(),
                 _vm._v(" "),
                 this.params.sort_field == "ages" &&
                 this.params.sort_direction == "desc"
-                  ? _c("span", [_vm._v("↓")])
+                  ? _c("span", {}, [_vm._v("↓")])
                   : _vm._e()
               ])
             ]),
             _vm._v(" "),
             _c("th", { attrs: { scope: "col" } }, [
-              _c("div", [
+              _c("div", { staticClass: "row justify-content-end" }, [
                 _c(
                   "a",
                   {
@@ -26745,18 +26753,18 @@ var render = function() {
                 _vm._v(" "),
                 this.params.sort_field == "points" &&
                 this.params.sort_direction == "asc"
-                  ? _c("span", [_vm._v("↑")])
+                  ? _c("span", {}, [_vm._v("↑")])
                   : _vm._e(),
                 _vm._v(" "),
                 this.params.sort_field == "points" &&
                 this.params.sort_direction == "desc"
-                  ? _c("span", [_vm._v("↓")])
+                  ? _c("span", {}, [_vm._v("↓")])
                   : _vm._e()
               ])
             ]),
             _vm._v(" "),
             _c("th", { attrs: { scope: "col" } }, [
-              _c("div", [
+              _c("div", { staticClass: "row justify-content-end" }, [
                 _c(
                   "a",
                   {
@@ -26773,17 +26781,17 @@ var render = function() {
                 _vm._v(" "),
                 this.params.sort_field == "tournaments" &&
                 this.params.sort_direction == "asc"
-                  ? _c("span", [_vm._v("↑")])
+                  ? _c("span", {}, [_vm._v("↑")])
                   : _vm._e(),
                 _vm._v(" "),
                 this.params.sort_field == "tournaments" &&
                 this.params.sort_direction == "desc"
-                  ? _c("span", [_vm._v("↓")])
+                  ? _c("span", {}, [_vm._v("↓")])
                   : _vm._e()
               ])
             ]),
             _vm._v(" "),
-            _c("th", { attrs: { scope: "col" } }, [
+            _c("th", { staticClass: "text-right", attrs: { scope: "col" } }, [
               _vm._v("\n                        Actions\n                    ")
             ])
           ])
@@ -26793,7 +26801,7 @@ var render = function() {
           "tbody",
           [
             _c("tr", [
-              _c("th", [
+              _c("th", { staticClass: " justify-content-end" }, [
                 _c(
                   "select",
                   {
@@ -26841,7 +26849,7 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _c("th", [
+              _c("th", { staticClass: " justify-content-end" }, [
                 _c(
                   "select",
                   {
@@ -26891,7 +26899,7 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _c("th", [
+              _c("th", { staticClass: " justify-content-end" }, [
                 _c(
                   "select",
                   {
@@ -26941,7 +26949,7 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _c("th", [
+              _c("th", { staticClass: " justify-content-end" }, [
                 _c("div", { staticClass: "row" }, [
                   _c("span", { staticClass: "col-md-6" }, [_vm._v("Min")]),
                   _c("input", {
@@ -26995,7 +27003,7 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _c("th", [
+              _c("th", { staticClass: " justify-content-end" }, [
                 _c("input", {
                   directives: [
                     {
@@ -27018,7 +27026,7 @@ var render = function() {
                 })
               ]),
               _vm._v(" "),
-              _c("th", [
+              _c("th", { staticClass: " justify-content-end" }, [
                 _c(
                   "select",
                   {
@@ -27066,62 +27074,74 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _c("th", [
+              _c("th", { staticClass: " justify-content-end" }, [
                 _c("div", { staticClass: "row" }, [
-                  _c("span", { staticClass: "col-md-6" }, [_vm._v("Min")]),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.ranges.age_min,
-                        expression: "ranges.age_min"
-                      }
-                    ],
-                    staticClass: "form-control col-md-6 text-center ",
-                    staticStyle: { padding: "0px" },
-                    attrs: { type: "number" },
-                    domProps: { value: _vm.ranges.age_min },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
+                  _c("div", { staticClass: "col" }, [
+                    _vm._v("Min"),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.ranges.age_min,
+                          expression: "ranges.age_min"
                         }
-                        _vm.$set(_vm.ranges, "age_min", $event.target.value)
+                      ],
+                      staticClass: "form-control text-center ",
+                      staticStyle: {
+                        padding: "0px",
+                        margin: "auto",
+                        width: "50%"
+                      },
+                      attrs: { type: "number" },
+                      domProps: { value: _vm.ranges.age_min },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.ranges, "age_min", $event.target.value)
+                        }
                       }
-                    }
-                  })
+                    })
+                  ])
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "row" }, [
-                  _c("span", { staticClass: "col-md-6" }, [_vm._v("Max")]),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.ranges.age_max,
-                        expression: "ranges.age_max"
-                      }
-                    ],
-                    staticClass: "form-control col-md-6 text-center",
-                    staticStyle: { padding: "0px" },
-                    attrs: { type: "number" },
-                    domProps: { value: _vm.ranges.age_max },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
+                  _c("div", { staticClass: "col" }, [
+                    _vm._v("Max"),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.ranges.age_max,
+                          expression: "ranges.age_max"
                         }
-                        _vm.$set(_vm.ranges, "age_max", $event.target.value)
+                      ],
+                      staticClass: "form-control text-center",
+                      staticStyle: {
+                        padding: "0px",
+                        margin: "auto",
+                        width: "50%"
+                      },
+                      attrs: { type: "number" },
+                      domProps: { value: _vm.ranges.age_max },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.ranges, "age_max", $event.target.value)
+                        }
                       }
-                    }
-                  })
+                    })
+                  ])
                 ])
               ]),
               _vm._v(" "),
-              _c("th", [
-                _c("div", { staticClass: "row" }, [
+              _c("th", { staticClass: " justify-content-end" }, [
+                _c("div", { staticClass: "row text-right" }, [
                   _c("span", { staticClass: "col-md-6" }, [_vm._v("Min")]),
                   _c("input", {
                     directives: [
@@ -27147,7 +27167,7 @@ var render = function() {
                   })
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "row text-right" }, [
                   _c("span", { staticClass: "col-md-6" }, [_vm._v("Max")]),
                   _c("input", {
                     directives: [
@@ -27174,7 +27194,7 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _c("th", [
+              _c("th", { staticClass: " justify-content-end" }, [
                 _c("div", { staticClass: "row" }, [
                   _c("span", { staticClass: "col-md-6" }, [_vm._v("Min")]),
                   _c("input", {
@@ -27360,14 +27380,14 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-3" }, [
+    return _c("div", { staticClass: "col-4" }, [
       _c(
         "p",
         {
           staticClass: "text-right font-weight-bold",
           staticStyle: { "padding-top": "10px" }
         },
-        [_vm._v("Records per page:\n           ")]
+        [_vm._v("Records per page:\n                ")]
       )
     ])
   }

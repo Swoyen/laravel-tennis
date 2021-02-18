@@ -27,7 +27,7 @@
             </div>
         </nav>
 
-        <div class="container" style="margin-top:10px">
+        <div class="container-fluid" style="margin-top:10px">
             <transition-page>
                 <router-view></router-view>
             </transition-page>
