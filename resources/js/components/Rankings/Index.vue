@@ -1,11 +1,19 @@
 <template>
     <div>
         <div class="shadow p-3 mb-5 bg-white rounded">
-            <table class="table">
-                <tbody></tbody>
-            </table>
-
-            <table class="table">
+        <div class="row justify-content-end text-right">
+            <div class="col-3">
+               <p class="text-right font-weight-bold" style="padding-top:10px">Records per page:
+               </p>
+            </div>
+            <div class="col-3">
+                <select v-model="view_method" class="form-control" >
+                    <option value="pagination">Pagination</option>
+                    <option value="infinte_scroll">Infinite records</option>
+                </select>
+                </div>
+        </div>
+            <table class="right table">
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col">
@@ -263,15 +271,20 @@
                 </tbody>
             </table>
         </div>
-        <!-- div class="row">
+        <div
+            v-if="view_method=='infinte_scroll' && rankings.data"
+            v-observe-visiblity="handleScrolledToBottom"
+        >asd</div>
+        <div class="row">
             <pagination
+                v-if="view_method=='pagination'"
                 class="col"
                 align="center"
                 :data="rankings"
                 :limit="10"
                 @pagination-change-page="getResults"
             ></pagination>
-        </div -->
+        </div>
     </div>
 </template>
 
@@ -286,6 +299,9 @@ export default {
             types: {},
             countries: {},
             search: "",
+            view_method:"pagination",
+            page: 1,
+            last_page: 1,
             ranges: {
                 ranking_min: 0,
                 ranking_max: 100,
@@ -329,7 +345,7 @@ export default {
             deep: true
         },
         search(val, old) {
-            if(val.length >= 4 || old.length >=4){
+            if(val.length >= 3 || old.length >= 3){
                 this.getResults();
             }
         }
@@ -369,7 +385,7 @@ export default {
                     {
                         params: {
                             page,
-                            search: this.search.length >=4? this.search : '',
+                            search: this.search.length >=3? this.search : '',
                             ranking_range : this.ranges.ranking_max >= this.ranges.ranking_min ? this.ranges.ranking_min + '-' + this.ranges.ranking_max : '',
                             age_range: this.ranges.age_max >= this.ranges.age_min ? this.ranges.age_min + '-' + this.ranges.age_max : '',
                             points_range: this.ranges.points_max >= this.ranges.points_min ? this.ranges.points_min + '-' + this.ranges.points_max : '',
@@ -380,9 +396,30 @@ export default {
                 )
                 .then(response => {
                     this.rankings = response.data;
-                    console.log("Help");
+                    this.last_page = response.data.meta.last_page;
                 });
         },
+         addResults(page) {
+            axios
+                 .get(
+                    "/api/rankings",
+                    {
+                        params: {
+                            page,
+                            search: this.search.length >=4? this.search : '',
+                            ranking_range : this.ranges.ranking_max >= this.ranges.ranking_min ? this.ranges.ranking_min + '-' + this.ranges.ranking_max : '',
+                            age_range: this.ranges.age_max >= this.ranges.age_min ? this.ranges.age_min + '-' + this.ranges.age_max : '',
+                            points_range: this.ranges.points_max >= this.ranges.points_min ? this.ranges.points_min + '-' + this.ranges.points_max : '',
+                            tournament_range: this.ranges.tournaments_max >= this.ranges.tournaments_min ? this.ranges.tournaments_min + '-' + this.ranges.tournaments_max : '',
+                            ...this.params
+                        }
+                    }
+                )
+                .then(response => {
+                    this.rankings.data.push(...response.data.data);
+                });
+        },
+
         changeSort(sort_field){
             if(this.params.sort_field === sort_field){
                 this.params.sort_direction =
@@ -393,6 +430,16 @@ export default {
                 this.params.sort_direction = "asc";
             }
             this.getResults();
+        },
+        handleScrolledToBottom(isVisible) {
+            if (!isVisible) {
+                return;
+            }
+            if (this.page >= this.lastPage) {
+                return;
+            }
+            this.page++;
+            this.addResults(this.page);
         }
     }
 };

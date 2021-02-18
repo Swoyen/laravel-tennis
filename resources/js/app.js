@@ -8,10 +8,13 @@ import App from "./components/App.vue";
 
 Vue.use(VueRouter);
 
+import { ObserveVisibility } from "vue-observe-visibility";
+Vue.directive("observe-visiblity", ObserveVisibility);
+
 const app = new Vue({
     el: "#app",
     components: {
-        App,
+        App
     },
-    router: new VueRouter(routes),
+    router: new VueRouter(routes)
 });
