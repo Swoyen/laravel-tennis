@@ -165,8 +165,12 @@ export default {
         submit_form() {
             this.form_submitting = true;
             axios
-                .post("/api/rankings", this.fields)
+                .put("/api/rankings/" + this.$route.params.id, this.fields)
                 .then(response => {
+                    this.$swal.fire({
+                        icon: "success",
+                        title: "Post updated succesfully"
+                    });
                     this.$router.push("/");
                     this.form_submitting = false;
                 })

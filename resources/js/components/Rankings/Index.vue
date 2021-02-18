@@ -280,7 +280,7 @@
                                     params: { id: ranking.id }
                                 }">
                             </router-link>
-                            <i data-toggle="tooltip" data-placement="top" title="Delete" @click="edit()" class="action-button bi-trash" style="border:0px; padding:0px; margin: 0px"></i>
+                            <i data-toggle="tooltip" data-placement="top" title="Delete" @click="delete_ranking(ranking.id)" class="action-button bi-trash" id="delete-button" style="border:0px; padding:0px; margin: 0px"></i>
                         </td>
                     </tr>
                 </tbody>
@@ -459,9 +459,47 @@ export default {
             this.page++;
             this.addResults(this.page);
         },
-        delete(){
+        delete_ranking(ranking_id){
+            this.$swal
+                .fire({
+                    title: "Are you sure?",
+                    text: "This action is irreversible!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#308d56",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                })
+                .then(result => {
+                    if(result.isConfirmed){
+                         axios
+                        .delete("/api/rankings/" + ranking_id)
+                        .then(response => {
+                            this.$swal.fire({
+                                icon: "success",
+                                title: "Record deleted succesfully!"
+                            });
+                            this.getResults();
+                        })
+                        .catch(error => {
+                            this.$swal.fire({
+                                icon: "error",
+                                title: "couldnt delete?"
+                            });
+                        });
+                    }
+                    else{
+                        this.getResults();
+                    }
 
+                });
         }
     }
 };
 </script>
+
+<style>
+    #delete-button{
+        color:rgb(178,34,34);
+    }
+</style>

@@ -28,11 +28,27 @@
         </nav>
 
         <div class="container" style="margin-top:10px">
-            <router-view></router-view>
+            <transition-page>
+                <router-view></router-view>
+            </transition-page>
         </div>
+        <footer>foot</footer>
     </div>
 </template>
 
 <script>
-export default{};
-</script
+import TransitionPage from "./Transitions/TransitionPage.vue";
+export default {
+    name: "App",
+    components: {
+        TransitionPage
+    }
+};
+</script>
+
+<style>
+.App {
+    max-width: 42em;
+    margin-right: auto;
+}
+</style>
