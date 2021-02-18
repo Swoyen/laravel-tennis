@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AttributesController;
 use App\Http\Controllers\RankingController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -20,3 +21,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('rankings', RankingController::class);
+
+Route::get('dates', [AttributesController::class, 'dates']);
+Route::get('genders', [AttributesController::class, 'genders']);
+Route::get('countries', [AttributesController::class, 'countries']);
+Route::get('types', [AttributesController::class, 'types']);

@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreRankingRequest;
 use App\Models\Ranking;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Resources\RankingResource;
+use App\Http\Requests\StoreRankingRequest;
 
 class RankingController extends Controller
 {
@@ -16,7 +17,40 @@ class RankingController extends Controller
      */
     public function index()
     {
-        return RankingResource::collection(Ranking::all());
+        $selected = array_filter(request()->only([
+            'date',
+            'gender',
+            'type',
+            'country',
+        ]));
+
+        $ranges = array_filter(request()->only([
+            'ranking_range',
+            'points_range',
+            'age_range',
+            'tournaments_range'
+        ]));
+
+        $rankings = Ranking::when(count($selected) > 0, function ($query) use ($selected){
+            foreach($selected as $column=>$value){
+                $query->where($column,$value);
+            }
+        })->when(request('search','') != '' , function ($query){
+            $query->where(function ($q){
+                $q->where('player', 'LIKE', '%' .request('search'). '%');
+            });
+        })->when(count($ranges) > 0, function($query) use ($ranges){
+            foreach($ranges as $range=>$value){
+                $column = Str::before($range, '_');
+                $min = Str::before($value, '-');
+                $max = Str::after($value, '-');
+
+                $query->where($column, '>=', $min)
+                    ->where($column, '<=', $max);
+            }
+        })->paginate(20);
+
+        return RankingResource::collection($rankings);
     }
 
     /**
@@ -37,7 +71,6 @@ class RankingController extends Controller
      */
     public function store(StoreRankingRequest $request)
     {
-        dd('here');
         $ranking = Ranking::create($request->validated());
         return new RankingResource($ranking);
     }

@@ -27,4 +27,5 @@ class Ranking extends Model
         'points' => 'integer',
         'tournaments' => 'integer'
     ];
+
 }
