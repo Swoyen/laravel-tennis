@@ -37,6 +37,7 @@ class RankingController extends Controller
      */
     public function store(StoreRankingRequest $request)
     {
+        dd('here');
         $ranking = Ranking::create($request->validated());
         return new RankingResource($ranking);
     }
@@ -70,9 +71,11 @@ class RankingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Ranking $ranking, StoreRankingRequest $request)
     {
-        //
+        $ranking->update($request->validated());
+
+        return new RankingResource($ranking);
     }
 
     /**
@@ -81,8 +84,9 @@ class RankingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Ranking $ranking)
     {
-        //
+        $ranking->delete();
+        return response()->noContent();
     }
 }
