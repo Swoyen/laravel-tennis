@@ -35,7 +35,7 @@
                         </th>
                         <th scope="col">
                             <div>
-                                <a @click.prevent="changeSort('gender') "href="#">Gender</a>
+                                <a @click.prevent="changeSort('gender') "href="#">Category</a>
                                 <span
                                 v-if="
                                     this.params.sort_field == 'gender' &&
@@ -169,6 +169,9 @@
                                 >&darr;</span>
                             </div>
                         </th>
+                        <th scope="col">
+                            Actions
+                        </th>
 
                     </tr>
                 </thead>
@@ -267,6 +270,10 @@
                         <td class="text-right">{{ ranking.age }}</td>
                         <td class="text-right">{{ ranking.points }}</td>
                         <td class="text-right">{{ ranking.tournaments }}</td>
+                        <td class="text-right">
+                            <i @click="edit()" class="action-button bi-pencil-square" style="border:0px; padding:0px; margin: 0px"></i>
+                            <i @click="edit()" class="action-button bi-trash" style="border:0px; padding:0px; margin: 0px"></i>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -348,6 +355,9 @@ export default {
             if(val.length >= 3 || old.length >= 3){
                 this.getResults();
             }
+        },
+        view_method(){
+            this.getResults();
         }
     },
     mounted() {
@@ -440,6 +450,12 @@ export default {
             }
             this.page++;
             this.addResults(this.page);
+        },
+        edit(){
+
+        },
+        delete(){
+
         }
     }
 };

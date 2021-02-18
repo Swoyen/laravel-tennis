@@ -9,3 +9,7 @@ input[type="number"] {
     -moz-appearance: textfield;
 }
 
+.action-button:hover {
+    cursor: pointer;
+}
+
