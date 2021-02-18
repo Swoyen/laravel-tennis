@@ -2056,6 +2056,195 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Rankings/Edit.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Rankings/Edit.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var vuejs_datepicker__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuejs-datepicker */ "./node_modules/vuejs-datepicker/dist/vuejs-datepicker.esm.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      errors: {},
+      form_submitting: false,
+      calendar: "",
+      loaded_date: new Date(2020, 12, 12),
+      fields: {
+        date: "",
+        gender: "",
+        type: "",
+        ranking: "",
+        player: "",
+        country: "",
+        age: "",
+        points: "",
+        tournaments: ""
+      }
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    axios.get("/api/rankings/" + this.$route.params.id).then(function (response) {
+      _this.fields = response.data.data;
+      _this.loaded_date = new Date(_this.fields.date);
+    })["catch"](function (error) {
+      console.log(error);
+    });
+  },
+  components: {
+    Datepicker: vuejs_datepicker__WEBPACK_IMPORTED_MODULE_0__.default
+  },
+  watch: {
+    calendar: function calendar() {
+      this.fields.date = this.calendar.getFullYear() + "-" + (this.calendar.getMonth() + 1) + "-" + this.calendar.getDate();
+    }
+  },
+  methods: {
+    submit_form: function submit_form() {
+      var _this2 = this;
+
+      this.form_submitting = true;
+      axios.post("/api/rankings", this.fields).then(function (response) {
+        _this2.$router.push("/");
+
+        _this2.form_submitting = false;
+      })["catch"](function (error) {
+        if (error.response.status === 422) {
+          _this2.errors = error.response.data.errors;
+          _this2.form_submitting = false;
+        }
+
+        _this2.form_submitting = false;
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Rankings/Index.vue?vue&type=script&lang=js&":
 /*!*********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Rankings/Index.vue?vue&type=script&lang=js& ***!
@@ -2087,6 +2276,14 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2455,28 +2652,28 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     getDates: function getDates() {
       var _this = this;
 
-      axios.get("api/dates").then(function (response) {
+      axios.get("/api/dates").then(function (response) {
         _this.dates = response.data;
       });
     },
     getGenders: function getGenders() {
       var _this2 = this;
 
-      axios.get("api/genders").then(function (response) {
+      axios.get("/api/genders").then(function (response) {
         _this2.genders = response.data;
       });
     },
     getTypes: function getTypes() {
       var _this3 = this;
 
-      axios.get("api/types").then(function (response) {
+      axios.get("/api/types").then(function (response) {
         _this3.types = response.data;
       });
     },
     getCountries: function getCountries() {
       var _this4 = this;
 
-      axios.get("api/countries").then(function (response) {
+      axios.get("/api/countries").then(function (response) {
         _this4.countries = response.data;
       });
     },
@@ -2538,7 +2735,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.page++;
       this.addResults(this.page);
     },
-    edit: function edit() {},
     "delete": function _delete() {}
   }
 });
@@ -2621,6 +2817,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _components_Rankings_Index_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/Rankings/Index.vue */ "./resources/js/components/Rankings/Index.vue");
 /* harmony import */ var _components_Rankings_Create_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Rankings/Create.vue */ "./resources/js/components/Rankings/Create.vue");
+/* harmony import */ var _components_Rankings_Edit_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Rankings/Edit.vue */ "./resources/js/components/Rankings/Edit.vue");
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -2633,6 +2831,10 @@ __webpack_require__.r(__webpack_exports__);
     path: "/rankings/create",
     component: _components_Rankings_Create_vue__WEBPACK_IMPORTED_MODULE_1__.default,
     name: "rankings.create"
+  }, {
+    path: "/rankings/edit/:id",
+    component: _components_Rankings_Edit_vue__WEBPACK_IMPORTED_MODULE_2__.default,
+    name: "rankings.edit"
   }]
 });
 
@@ -20682,6 +20884,45 @@ component.options.__file = "resources/js/components/Rankings/Create.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/Rankings/Edit.vue":
+/*!***************************************************!*\
+  !*** ./resources/js/components/Rankings/Edit.vue ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Edit_vue_vue_type_template_id_88e8e8be___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Edit.vue?vue&type=template&id=88e8e8be& */ "./resources/js/components/Rankings/Edit.vue?vue&type=template&id=88e8e8be&");
+/* harmony import */ var _Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Edit.vue?vue&type=script&lang=js& */ "./resources/js/components/Rankings/Edit.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _Edit_vue_vue_type_template_id_88e8e8be___WEBPACK_IMPORTED_MODULE_0__.render,
+  _Edit_vue_vue_type_template_id_88e8e8be___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Rankings/Edit.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/Rankings/Index.vue":
 /*!****************************************************!*\
   !*** ./resources/js/components/Rankings/Index.vue ***!
@@ -20757,6 +20998,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Rankings/Edit.vue?vue&type=script&lang=js&":
+/*!****************************************************************************!*\
+  !*** ./resources/js/components/Rankings/Edit.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Edit.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Rankings/Edit.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
 /***/ "./resources/js/components/Rankings/Index.vue?vue&type=script&lang=js&":
 /*!*****************************************************************************!*\
   !*** ./resources/js/components/Rankings/Index.vue?vue&type=script&lang=js& ***!
@@ -20803,6 +21060,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_template_id_23caf1d3___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_template_id_23caf1d3___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Create.vue?vue&type=template&id=23caf1d3& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Rankings/Create.vue?vue&type=template&id=23caf1d3&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Rankings/Edit.vue?vue&type=template&id=88e8e8be&":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/components/Rankings/Edit.vue?vue&type=template&id=88e8e8be& ***!
+  \**********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_88e8e8be___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_88e8e8be___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_88e8e8be___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Edit.vue?vue&type=template&id=88e8e8be& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Rankings/Edit.vue?vue&type=template&id=88e8e8be&");
 
 
 /***/ }),
@@ -21298,6 +21572,403 @@ var render = function() {
           attrs: { type: "submit", disabled: _vm.form_submitting },
           domProps: {
             value: _vm.form_submitting ? "Saving Post" : "Save a post"
+          }
+        })
+      ]
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Rankings/Edit.vue?vue&type=template&id=88e8e8be&":
+/*!*************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Rankings/Edit.vue?vue&type=template&id=88e8e8be& ***!
+  \*************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "shadow p-3 mb-5 bg-white rounded" }, [
+    _c(
+      "form",
+      {
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            return _vm.submit_form($event)
+          }
+        }
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "form-group" },
+          [
+            _vm._v("\n            Date:\n            "),
+            _c("br"),
+            _vm._v(" "),
+            _c("datepicker", {
+              attrs: { "bootstrap-styling": true, value: this.loaded_date },
+              model: {
+                value: _vm.loaded_date,
+                callback: function($$v) {
+                  _vm.loaded_date = $$v
+                },
+                expression: "loaded_date"
+              }
+            }),
+            _vm._v(" "),
+            _vm.errors && _vm.errors.date
+              ? _c("div", { staticClass: "alert alert-danger" }, [
+                  _vm._v(
+                    "\n                " +
+                      _vm._s(_vm.errors.date[0]) +
+                      "\n            "
+                  )
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _c("br")
+          ],
+          1
+        ),
+        _vm._v("\n        Category:\n        "),
+        _c("br"),
+        _vm._v(" "),
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.fields.gender,
+                expression: "fields.gender"
+              }
+            ],
+            staticClass: "form-control",
+            on: {
+              change: function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.$set(
+                  _vm.fields,
+                  "gender",
+                  $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                )
+              }
+            }
+          },
+          [
+            _c("option", { attrs: { value: "", disabled: "", selected: "" } }, [
+              _vm._v("Select Category")
+            ]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "men" } }, [_vm._v("Men")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "women" } }, [_vm._v("Women")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "mixed" } }, [_vm._v("Mixed")])
+          ]
+        ),
+        _vm._v(" "),
+        _vm.errors && _vm.errors.gender
+          ? _c("div", { staticClass: "alert alert-danger" }, [
+              _vm._v(
+                "\n            " + _vm._s(_vm.errors.gender[0]) + "\n        "
+              )
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v("\n\n        Type:\n        "),
+        _c("br"),
+        _vm._v(" "),
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.fields.type,
+                expression: "fields.type"
+              }
+            ],
+            staticClass: "form-control",
+            on: {
+              change: function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.$set(
+                  _vm.fields,
+                  "type",
+                  $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                )
+              }
+            }
+          },
+          [
+            _c("option", { attrs: { value: "", disabled: "", selected: "" } }, [
+              _vm._v("Select Competition Type")
+            ]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "singles" } }, [_vm._v("Singles")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "doubles" } }, [_vm._v("Doubles")])
+          ]
+        ),
+        _vm._v(" "),
+        _vm.errors && _vm.errors.type
+          ? _c("div", { staticClass: "alert alert-danger" }, [
+              _vm._v(
+                "\n            " + _vm._s(_vm.errors.type[0]) + "\n        "
+              )
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v("\n\n        Ranking:\n        "),
+        _c("br"),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.fields.ranking,
+              expression: "fields.ranking"
+            }
+          ],
+          staticClass: "form-control",
+          attrs: { type: "number", min: "0", max: "1000", step: "1" },
+          domProps: { value: _vm.fields.ranking },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.fields, "ranking", $event.target.value)
+            }
+          }
+        }),
+        _vm._v(" "),
+        _vm.errors && _vm.errors.ranking
+          ? _c("div", { staticClass: "alert alert-danger" }, [
+              _vm._v(
+                "\n            " + _vm._s(_vm.errors.ranking[0]) + "\n        "
+              )
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v("\n\n        Player:\n        "),
+        _c("br"),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.fields.player,
+              expression: "fields.player"
+            }
+          ],
+          staticClass: "form-control",
+          attrs: { type: "text" },
+          domProps: { value: _vm.fields.player },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.fields, "player", $event.target.value)
+            }
+          }
+        }),
+        _vm._v(" "),
+        _vm.errors && _vm.errors.player
+          ? _c("div", { staticClass: "alert alert-danger" }, [
+              _vm._v(
+                "\n            " + _vm._s(_vm.errors.player[0]) + "\n        "
+              )
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v("\n\n        Country:\n        "),
+        _c("br"),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.fields.country,
+              expression: "fields.country"
+            }
+          ],
+          staticClass: "form-control",
+          attrs: { type: "text" },
+          domProps: { value: _vm.fields.country },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.fields, "country", $event.target.value)
+            }
+          }
+        }),
+        _vm._v(" "),
+        _vm.errors && _vm.errors.country
+          ? _c("div", { staticClass: "alert alert-danger" }, [
+              _vm._v(
+                "\n            " + _vm._s(_vm.errors.country[0]) + "\n        "
+              )
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v("\n\n        Age:\n        "),
+        _c("br"),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.fields.age,
+              expression: "fields.age"
+            }
+          ],
+          staticClass: "form-control",
+          attrs: { type: "text" },
+          domProps: { value: _vm.fields.age },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.fields, "age", $event.target.value)
+            }
+          }
+        }),
+        _vm._v(" "),
+        _vm.errors && _vm.errors.age
+          ? _c("div", { staticClass: "alert alert-danger" }, [
+              _vm._v(
+                "\n            " + _vm._s(_vm.errors.age[0]) + "\n        "
+              )
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v("\n\n        Points:\n        "),
+        _c("br"),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.fields.points,
+              expression: "fields.points"
+            }
+          ],
+          staticClass: "form-control",
+          attrs: { type: "text" },
+          domProps: { value: _vm.fields.points },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.fields, "points", $event.target.value)
+            }
+          }
+        }),
+        _vm._v(" "),
+        _vm.errors && _vm.errors.points
+          ? _c("div", { staticClass: "alert alert-danger" }, [
+              _vm._v(
+                "\n            " + _vm._s(_vm.errors.points[0]) + "\n        "
+              )
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v("\n\n        Tournaments:\n        "),
+        _c("br"),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.fields.tournaments,
+              expression: "fields.tournaments"
+            }
+          ],
+          staticClass: "form-control",
+          attrs: { type: "text" },
+          domProps: { value: _vm.fields.tournaments },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.fields, "tournaments", $event.target.value)
+            }
+          }
+        }),
+        _vm._v(" "),
+        _vm.errors && _vm.errors.tournaments
+          ? _c("div", { staticClass: "alert alert-danger" }, [
+              _vm._v(
+                "\n            " +
+                  _vm._s(_vm.errors.tournaments[0]) +
+                  "\n        "
+              )
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "btn btn-primary justify-content-center",
+          attrs: { type: "submit", disabled: _vm.form_submitting },
+          domProps: {
+            value: _vm.form_submitting ? "Saving Ranking" : "Modify Ranking"
           }
         })
       ]
@@ -22121,35 +22792,44 @@ var render = function() {
                   _vm._v(_vm._s(ranking.tournaments))
                 ]),
                 _vm._v(" "),
-                _c("td", { staticClass: "text-right" }, [
-                  _c("i", {
-                    staticClass: "action-button bi-pencil-square",
-                    staticStyle: {
-                      border: "0px",
-                      padding: "0px",
-                      margin: "0px"
-                    },
-                    on: {
-                      click: function($event) {
-                        return _vm.edit()
+                _c(
+                  "td",
+                  { staticClass: "text-right" },
+                  [
+                    _c("router-link", {
+                      staticClass: "action-button bi-pencil-square",
+                      attrs: {
+                        "data-toggle": "tooltip",
+                        "data-placement": "top",
+                        title: "Edit",
+                        to: {
+                          name: "rankings.edit",
+                          params: { id: ranking.id }
+                        }
                       }
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("i", {
-                    staticClass: "action-button bi-trash",
-                    staticStyle: {
-                      border: "0px",
-                      padding: "0px",
-                      margin: "0px"
-                    },
-                    on: {
-                      click: function($event) {
-                        return _vm.edit()
+                    }),
+                    _vm._v(" "),
+                    _c("i", {
+                      staticClass: "action-button bi-trash",
+                      staticStyle: {
+                        border: "0px",
+                        padding: "0px",
+                        margin: "0px"
+                      },
+                      attrs: {
+                        "data-toggle": "tooltip",
+                        "data-placement": "top",
+                        title: "Delete"
+                      },
+                      on: {
+                        click: function($event) {
+                          return _vm.edit()
+                        }
                       }
-                    }
-                  })
-                ])
+                    })
+                  ],
+                  1
+                )
               ])
             })
           ],

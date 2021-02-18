@@ -270,9 +270,17 @@
                         <td class="text-right">{{ ranking.age }}</td>
                         <td class="text-right">{{ ranking.points }}</td>
                         <td class="text-right">{{ ranking.tournaments }}</td>
+
                         <td class="text-right">
-                            <i @click="edit()" class="action-button bi-pencil-square" style="border:0px; padding:0px; margin: 0px"></i>
-                            <i @click="edit()" class="action-button bi-trash" style="border:0px; padding:0px; margin: 0px"></i>
+                            <router-link
+                                data-toggle="tooltip" data-placement="top" title="Edit"
+                                class="action-button bi-pencil-square"
+                                :to="{
+                                    name: 'rankings.edit',
+                                    params: { id: ranking.id }
+                                }">
+                            </router-link>
+                            <i data-toggle="tooltip" data-placement="top" title="Delete" @click="edit()" class="action-button bi-trash" style="border:0px; padding:0px; margin: 0px"></i>
                         </td>
                     </tr>
                 </tbody>
@@ -369,22 +377,22 @@ export default {
     },
     methods: {
         getDates() {
-            axios.get("api/dates").then(response => {
+            axios.get("/api/dates").then(response => {
                 this.dates = response.data;
             });
         },
         getGenders() {
-            axios.get("api/genders").then(response => {
+            axios.get("/api/genders").then(response => {
                 this.genders = response.data;
             });
         },
         getTypes() {
-            axios.get("api/types").then(response => {
+            axios.get("/api/types").then(response => {
                 this.types = response.data;
             });
         },
         getCountries() {
-            axios.get("api/countries").then(response => {
+            axios.get("/api/countries").then(response => {
                 this.countries = response.data;
             });
         },
@@ -450,9 +458,6 @@ export default {
             }
             this.page++;
             this.addResults(this.page);
-        },
-        edit(){
-
         },
         delete(){
 
