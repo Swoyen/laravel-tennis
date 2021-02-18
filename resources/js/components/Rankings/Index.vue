@@ -9,32 +9,159 @@
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col">
-                            <a href="#">Date</a>
+                            <div>
+                                <a @click.prevent="changeSort('date')" href="">Date</a>
+                                <span
+                                v-if="
+                                    this.params.sort_field == 'date' &&
+                                        this.params.sort_direction == 'asc'
+                                "
+                                    >&uarr;</span>
+                                <span
+                                    v-if="
+                                        this.params.sort_field == 'date' &&
+                                            this.params.sort_direction == 'desc'
+                                    "
+                                >&darr;</span>
+                            </div>
                         </th>
                         <th scope="col">
-                            <a href="#">Gender</a>
+                            <div>
+                                <a @click.prevent="changeSort('gender') "href="#">Gender</a>
+                                <span
+                                v-if="
+                                    this.params.sort_field == 'gender' &&
+                                        this.params.sort_direction == 'asc'
+                                "
+                                    >&uarr;</span>
+                                <span
+                                    v-if="
+                                        this.params.sort_field == 'gender' &&
+                                            this.params.sort_direction == 'desc'
+                                    "
+                                >&darr;</span>
+                            </div>
                         </th>
                         <th scope="col">
-                            <a href="#">Type</a>
+                            <div>
+                                <a @click.prevent="changeSort('type')" href="#">Type</a>
+                                <span
+                                v-if="
+                                    this.params.sort_field == 'type' &&
+                                        this.params.sort_direction == 'asc'
+                                "
+                                    >&uarr;</span>
+                                <span
+                                    v-if="
+                                        this.params.sort_field == 'type' &&
+                                            this.params.sort_direction == 'desc'
+                                    "
+                                >&darr;</span>
+                            </div>
                         </th>
                         <th scope="col">
-                            <a href="#">Ranking</a>
+                            <div>
+                                <a @click.prevent="changeSort('ranking')" href="#">Ranking</a>
+                                <span
+                                v-if="
+                                    this.params.sort_field == 'ranking' &&
+                                        this.params.sort_direction == 'asc'
+                                "
+                                    >&uarr;</span>
+                                <span
+                                    v-if="
+                                        this.params.sort_field == 'ranking' &&
+                                            this.params.sort_direction == 'desc'
+                                    "
+                                >&darr;</span>
+                            </div>
                         </th>
                         <th scope="col">
-                            <a href="#">Player</a>
+                            <div>
+                                <a @click.prevent="changeSort('player')" href="#">Player</a>
+                                <span
+                                v-if="
+                                    this.params.sort_field == 'player' &&
+                                        this.params.sort_direction == 'asc'
+                                "
+                                    >&uarr;</span>
+                                <span
+                                    v-if="
+                                        this.params.sort_field == 'player' &&
+                                            this.params.sort_direction == 'desc'
+                                    "
+                                >&darr;</span>
+                            </div>
                         </th>
                         <th scope="col">
-                            <a href="#">Country</a>
+                            <div>
+                                <a @click.prevent="changeSort('country')" href="#">Country</a>
+                                <span
+                                v-if="
+                                    this.params.sort_field == 'country' &&
+                                        this.params.sort_direction == 'asc'
+                                "
+                                    >&uarr;</span>
+                                <span
+                                    v-if="
+                                        this.params.sort_field == 'country' &&
+                                            this.params.sort_direction == 'desc'
+                                    "
+                                >&darr;</span>
+                            </div>
                         </th>
                         <th scope="col">
-                            <a href="#">Age</a>
+                            <div>
+                                <a @click.prevent="changeSort('age')" href="#">Age</a>
+                                <span
+                                v-if="
+                                    this.params.sort_field == 'age' &&
+                                        this.params.sort_direction == 'asc'
+                                "
+                                    >&uarr;</span>
+                                <span
+                                    v-if="
+                                        this.params.sort_field == 'ages' &&
+                                            this.params.sort_direction == 'desc'
+                                    "
+                                >&darr;</span>
+                            </div>
                         </th>
                         <th scope="col">
-                            <a href="#">Points</a>
+                            <div>
+                                <a @click.prevent="changeSort('points')" href="#">Points</a>
+                                <span
+                                v-if="
+                                    this.params.sort_field == 'points' &&
+                                        this.params.sort_direction == 'asc'
+                                "
+                                    >&uarr;</span>
+                                <span
+                                    v-if="
+                                        this.params.sort_field == 'points' &&
+                                            this.params.sort_direction == 'desc'
+                                    "
+                                >&darr;</span>
+                            </div>
                         </th>
                         <th scope="col">
-                            <a href="#">Tournaments</a>
+                            <div>
+                                <a href="#" @click.prevent="changeSort('tournaments')" >Tournaments</a>
+                                <span
+                                v-if="
+                                    this.params.sort_field == 'tournaments' &&
+                                        this.params.sort_direction == 'asc'
+                                "
+                                    >&uarr;</span>
+                                <span
+                                    v-if="
+                                        this.params.sort_field == 'tournaments' &&
+                                            this.params.sort_direction == 'desc'
+                                    "
+                                >&darr;</span>
+                            </div>
                         </th>
+
                     </tr>
                 </thead>
 
@@ -124,14 +251,14 @@
                     </tr>
                     <tr v-for="ranking in rankings.data">
                         <td scope="row">{{ ranking.date }}</td>
-                        <td>{{ ranking.gender }}</td>
-                        <td>{{ ranking.type }}</td>
-                        <td>{{ ranking.ranking }}</td>
-                        <td>{{ ranking.player }}</td>
-                        <td>{{ ranking.country }}</td>
-                        <td>{{ ranking.age }}</td>
-                        <td>{{ ranking.points }}</td>
-                        <td>{{ ranking.tournaments }}</td>
+                        <td class="text-center">{{ ranking.gender }}</td>
+                        <td class="text-right">{{ ranking.type }}</td>
+                        <td class="text-right">{{ ranking.ranking }}</td>
+                        <td class="text-right">{{ ranking.player }}</td>
+                        <td class="text-right">{{ ranking.country }}</td>
+                        <td class="text-right">{{ ranking.age }}</td>
+                        <td class="text-right">{{ ranking.points }}</td>
+                        <td class="text-right">{{ ranking.tournaments }}</td>
                     </tr>
                 </tbody>
             </table>
@@ -174,7 +301,8 @@ export default {
                 gender: "",
                 type: "",
                 country: "",
-
+                sort_field: "date",
+                sort_direction: "desc",
             }
         };
     },
@@ -255,7 +383,17 @@ export default {
                     console.log("Help");
                 });
         },
-
+        changeSort(sort_field){
+            if(this.params.sort_field === sort_field){
+                this.params.sort_direction =
+                    this.params.sort_direction === "asc" ? "desc" : "asc";
+            }
+            else{
+                this.params.sort_field = sort_field;
+                this.params.sort_direction = "asc";
+            }
+            this.getResults();
+        }
     }
 };
 </script>

@@ -31,6 +31,16 @@ class RankingController extends Controller
             'tournaments_range'
         ]));
 
+        $sortField = request('sort_field', 'date');
+        if(!in_array($sortField, ['date','gender','type','ranking','player','country','age','points','tournaments'])) {
+            $sortField = 'date';
+        }
+
+        $sortDirection = request('sort_direction', 'desc');
+        if(!in_array($sortDirection, ['asc','desc'])) {
+            $sortDirection = 'desc';
+        }
+
         $rankings = Ranking::when(count($selected) > 0, function ($query) use ($selected){
             foreach($selected as $column=>$value){
                 $query->where($column,$value);
@@ -48,7 +58,7 @@ class RankingController extends Controller
                 $query->where($column, '>=', $min)
                     ->where($column, '<=', $max);
             }
-        })->paginate(20);
+        })->orderBy($sortField, $sortDirection)->paginate(20);
 
         return RankingResource::collection($rankings);
     }

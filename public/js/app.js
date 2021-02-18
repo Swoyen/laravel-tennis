@@ -2047,6 +2047,133 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -2071,7 +2198,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         date: "",
         gender: "",
         type: "",
-        country: ""
+        country: "",
+        sort_field: "date",
+        sort_direction: "desc"
       }
     };
   },
@@ -2152,6 +2281,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         _this5.rankings = response.data;
         console.log("Help");
       });
+    },
+    changeSort: function changeSort(sort_field) {
+      if (this.params.sort_field === sort_field) {
+        this.params.sort_direction = this.params.sort_direction === "asc" ? "desc" : "asc";
+      } else {
+        this.params.sort_field = sort_field;
+        this.params.sort_direction = "asc";
+      }
+
+      this.getResults();
     }
   }
 });
@@ -20467,7 +20606,261 @@ var render = function() {
       _vm._m(0),
       _vm._v(" "),
       _c("table", { staticClass: "table" }, [
-        _vm._m(1),
+        _c("thead", { staticClass: "thead-dark" }, [
+          _c("tr", [
+            _c("th", { attrs: { scope: "col" } }, [
+              _c("div", [
+                _c(
+                  "a",
+                  {
+                    attrs: { href: "" },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        return _vm.changeSort("date")
+                      }
+                    }
+                  },
+                  [_vm._v("Date")]
+                ),
+                _vm._v(" "),
+                this.params.sort_field == "date" &&
+                this.params.sort_direction == "asc"
+                  ? _c("span", [_vm._v("↑")])
+                  : _vm._e(),
+                _vm._v(" "),
+                this.params.sort_field == "date" &&
+                this.params.sort_direction == "desc"
+                  ? _c("span", [_vm._v("↓")])
+                  : _vm._e()
+              ])
+            ]),
+            _vm._v(" "),
+            _c("th", { attrs: { scope: "col" } }, [
+              _c("div", [
+                _c(
+                  "a",
+                  {
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        return _vm.changeSort("gender")
+                      }
+                    }
+                  },
+                  [_vm._v("Gender")]
+                ),
+                _vm._v(" "),
+                this.params.sort_field == "gender" &&
+                this.params.sort_direction == "asc"
+                  ? _c("span", [_vm._v("↑")])
+                  : _vm._e(),
+                _vm._v(" "),
+                this.params.sort_field == "gender" &&
+                this.params.sort_direction == "desc"
+                  ? _c("span", [_vm._v("↓")])
+                  : _vm._e()
+              ])
+            ]),
+            _vm._v(" "),
+            _c("th", { attrs: { scope: "col" } }, [
+              _c("div", [
+                _c(
+                  "a",
+                  {
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        return _vm.changeSort("type")
+                      }
+                    }
+                  },
+                  [_vm._v("Type")]
+                ),
+                _vm._v(" "),
+                this.params.sort_field == "type" &&
+                this.params.sort_direction == "asc"
+                  ? _c("span", [_vm._v("↑")])
+                  : _vm._e(),
+                _vm._v(" "),
+                this.params.sort_field == "type" &&
+                this.params.sort_direction == "desc"
+                  ? _c("span", [_vm._v("↓")])
+                  : _vm._e()
+              ])
+            ]),
+            _vm._v(" "),
+            _c("th", { attrs: { scope: "col" } }, [
+              _c("div", [
+                _c(
+                  "a",
+                  {
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        return _vm.changeSort("ranking")
+                      }
+                    }
+                  },
+                  [_vm._v("Ranking")]
+                ),
+                _vm._v(" "),
+                this.params.sort_field == "ranking" &&
+                this.params.sort_direction == "asc"
+                  ? _c("span", [_vm._v("↑")])
+                  : _vm._e(),
+                _vm._v(" "),
+                this.params.sort_field == "ranking" &&
+                this.params.sort_direction == "desc"
+                  ? _c("span", [_vm._v("↓")])
+                  : _vm._e()
+              ])
+            ]),
+            _vm._v(" "),
+            _c("th", { attrs: { scope: "col" } }, [
+              _c("div", [
+                _c(
+                  "a",
+                  {
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        return _vm.changeSort("player")
+                      }
+                    }
+                  },
+                  [_vm._v("Player")]
+                ),
+                _vm._v(" "),
+                this.params.sort_field == "player" &&
+                this.params.sort_direction == "asc"
+                  ? _c("span", [_vm._v("↑")])
+                  : _vm._e(),
+                _vm._v(" "),
+                this.params.sort_field == "player" &&
+                this.params.sort_direction == "desc"
+                  ? _c("span", [_vm._v("↓")])
+                  : _vm._e()
+              ])
+            ]),
+            _vm._v(" "),
+            _c("th", { attrs: { scope: "col" } }, [
+              _c("div", [
+                _c(
+                  "a",
+                  {
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        return _vm.changeSort("country")
+                      }
+                    }
+                  },
+                  [_vm._v("Country")]
+                ),
+                _vm._v(" "),
+                this.params.sort_field == "country" &&
+                this.params.sort_direction == "asc"
+                  ? _c("span", [_vm._v("↑")])
+                  : _vm._e(),
+                _vm._v(" "),
+                this.params.sort_field == "country" &&
+                this.params.sort_direction == "desc"
+                  ? _c("span", [_vm._v("↓")])
+                  : _vm._e()
+              ])
+            ]),
+            _vm._v(" "),
+            _c("th", { attrs: { scope: "col" } }, [
+              _c("div", [
+                _c(
+                  "a",
+                  {
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        return _vm.changeSort("age")
+                      }
+                    }
+                  },
+                  [_vm._v("Age")]
+                ),
+                _vm._v(" "),
+                this.params.sort_field == "age" &&
+                this.params.sort_direction == "asc"
+                  ? _c("span", [_vm._v("↑")])
+                  : _vm._e(),
+                _vm._v(" "),
+                this.params.sort_field == "ages" &&
+                this.params.sort_direction == "desc"
+                  ? _c("span", [_vm._v("↓")])
+                  : _vm._e()
+              ])
+            ]),
+            _vm._v(" "),
+            _c("th", { attrs: { scope: "col" } }, [
+              _c("div", [
+                _c(
+                  "a",
+                  {
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        return _vm.changeSort("points")
+                      }
+                    }
+                  },
+                  [_vm._v("Points")]
+                ),
+                _vm._v(" "),
+                this.params.sort_field == "points" &&
+                this.params.sort_direction == "asc"
+                  ? _c("span", [_vm._v("↑")])
+                  : _vm._e(),
+                _vm._v(" "),
+                this.params.sort_field == "points" &&
+                this.params.sort_direction == "desc"
+                  ? _c("span", [_vm._v("↓")])
+                  : _vm._e()
+              ])
+            ]),
+            _vm._v(" "),
+            _c("th", { attrs: { scope: "col" } }, [
+              _c("div", [
+                _c(
+                  "a",
+                  {
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        return _vm.changeSort("tournaments")
+                      }
+                    }
+                  },
+                  [_vm._v("Tournaments")]
+                ),
+                _vm._v(" "),
+                this.params.sort_field == "tournaments" &&
+                this.params.sort_direction == "asc"
+                  ? _c("span", [_vm._v("↑")])
+                  : _vm._e(),
+                _vm._v(" "),
+                this.params.sort_field == "tournaments" &&
+                this.params.sort_direction == "desc"
+                  ? _c("span", [_vm._v("↓")])
+                  : _vm._e()
+              ])
+            ])
+          ])
+        ]),
         _vm._v(" "),
         _c(
           "tbody",
@@ -20923,21 +21316,37 @@ var render = function() {
                   _vm._v(_vm._s(ranking.date))
                 ]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(ranking.gender))]),
+                _c("td", { staticClass: "text-center" }, [
+                  _vm._v(_vm._s(ranking.gender))
+                ]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(ranking.type))]),
+                _c("td", { staticClass: "text-right" }, [
+                  _vm._v(_vm._s(ranking.type))
+                ]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(ranking.ranking))]),
+                _c("td", { staticClass: "text-right" }, [
+                  _vm._v(_vm._s(ranking.ranking))
+                ]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(ranking.player))]),
+                _c("td", { staticClass: "text-right" }, [
+                  _vm._v(_vm._s(ranking.player))
+                ]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(ranking.country))]),
+                _c("td", { staticClass: "text-right" }, [
+                  _vm._v(_vm._s(ranking.country))
+                ]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(ranking.age))]),
+                _c("td", { staticClass: "text-right" }, [
+                  _vm._v(_vm._s(ranking.age))
+                ]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(ranking.points))]),
+                _c("td", { staticClass: "text-right" }, [
+                  _vm._v(_vm._s(ranking.points))
+                ]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(ranking.tournaments))])
+                _c("td", { staticClass: "text-right" }, [
+                  _vm._v(_vm._s(ranking.tournaments))
+                ])
               ])
             })
           ],
@@ -20953,50 +21362,6 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("table", { staticClass: "table" }, [_c("tbody")])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", { staticClass: "thead-dark" }, [
-      _c("tr", [
-        _c("th", { attrs: { scope: "col" } }, [
-          _c("a", { attrs: { href: "#" } }, [_vm._v("Date")])
-        ]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [
-          _c("a", { attrs: { href: "#" } }, [_vm._v("Gender")])
-        ]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [
-          _c("a", { attrs: { href: "#" } }, [_vm._v("Type")])
-        ]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [
-          _c("a", { attrs: { href: "#" } }, [_vm._v("Ranking")])
-        ]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [
-          _c("a", { attrs: { href: "#" } }, [_vm._v("Player")])
-        ]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [
-          _c("a", { attrs: { href: "#" } }, [_vm._v("Country")])
-        ]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [
-          _c("a", { attrs: { href: "#" } }, [_vm._v("Age")])
-        ]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [
-          _c("a", { attrs: { href: "#" } }, [_vm._v("Points")])
-        ]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [
-          _c("a", { attrs: { href: "#" } }, [_vm._v("Tournaments")])
-        ])
-      ])
-    ])
   }
 ]
 render._withStripped = true
