@@ -154,11 +154,20 @@ export default {
             axios
                 .post("/api/rankings", this.fields)
                 .then(response => {
+                    this.$swal.fire({
+                        icon: "success",
+                        title: "Post added succesfully."
+                    });
                     this.$router.push("/");
                     this.form_submitting = false;
                 })
                 .catch(error => {
                     if (error.response.status === 422) {
+                        this.$swal.fire({
+                            icon: "error",
+                            title: "Please check your details."
+                        });
+                        console.log(error.response.data.errors);
                         this.errors = error.response.data.errors;
                         this.form_submitting = false;
                     }

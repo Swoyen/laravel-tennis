@@ -2054,11 +2054,22 @@ __webpack_require__.r(__webpack_exports__);
 
       this.form_submitting = true;
       axios.post("/api/rankings", this.fields).then(function (response) {
+        _this.$swal.fire({
+          icon: "success",
+          title: "Post added succesfully."
+        });
+
         _this.$router.push("/");
 
         _this.form_submitting = false;
       })["catch"](function (error) {
         if (error.response.status === 422) {
+          _this.$swal.fire({
+            icon: "error",
+            title: "Please check your details."
+          });
+
+          console.log(error.response.data.errors);
           _this.errors = error.response.data.errors;
           _this.form_submitting = false;
         }
