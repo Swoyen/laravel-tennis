@@ -1,7 +1,25 @@
 <template>
     <div>
-        <div class="shadow p-3 mb-5 bg-white rounded">class= ""
-            <div class=" row justify-content-end text-right">
+        <div class="shadow p-3 mb-5 bg-white rounded">
+
+
+            <div class="row justify-content-end text-right">
+                <div class="col-3 text-left">
+                    <span @click="toggleFilter()" class="filter-button text-left font-weight-bold" style="padding-top:10px"> Filter Records
+                        <span class="col"
+                                v-if="
+                                    this.filter_shown == true
+                                "
+                                    >&uarr;
+                            </span>
+                            <span class="col"
+                                    v-if="
+                                         this.filter_shown == false
+                                    "
+                                >&darr;
+                                </span>
+                        </span>
+                </div>
                 <div class="col-4">
                     <p class="text-right font-weight-bold" style="padding-top:10px">Records per page:
                     </p>
@@ -13,12 +31,142 @@
                     </select>
                 </div>
             </div>
+             <div class="row" :ref="'filterer'" style="display:none">
+                <div class="col-10 justify-content-start filter">
+                <div class=" row">
+                    <div class="col-3 text-right">
+                        <b>Date:</b>
+                    </div>
+                    <div class="col-8">
+                        <select v-model="params.date" class="form-control">
+                            <option value="">All dates</option>
+                            <option
+                                v-for="date in dates"
+                                :value="date.date"
+                                >{{ date.date }}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3 text-right">
+                        <b>Category:</b>
+                    </div>
+                    <div class="col-8">
+                        <select
+                            v-model="params.gender"
+                            class="form-control"
+                        >
+                            <option value="">All Genders</option>
+                            <option
+                                v-for="gender in genders"
+                                :value="gender.gender"
+                                >{{ gender.gender }}</option
+                            >
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3 text-right">
+                        <b>Types:</b>
+                    </div>
+                    <div class="col-8">
+                        <select v-model="params.type" class="form-control">
+                            <option value="">All Types</option>
+                            <option
+                                v-for="ranking_type in types"
+                                :value="ranking_type.type"
+                                >{{ ranking_type.type }}</option
+                            >
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3 text-right">
+                        <b>Rankings:</b>
+                    </div>
+                    <div class="col-8">
+                        <div class="row">
+                            <span class="col-md-6 text-right">Min</span><input min="0" max="100" v-model="ranges.ranking_min" type="number"  class="form-control col-md-6 text-center " style="padding: 0px"></input>
+                        </div>
+                        <div class="row">
+                            <span class="col-md-6 text-right">Max</span><input min="0" max="100" v-model="ranges.ranking_max" type="number"  class="form-control col-md-6 text-center" style="padding: 0px"></input>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3 text-right">
+                        <b>Player:</b>
+                    </div>
+                    <div class="col-8">
+                        <input v-model="search" class="form-control"></input>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3 text-right">
+                        <b>Country:</b>
+                    </div>
+                    <div class="col-8">
+                        <select
+                            v-model="params.country"
+                            class="form-control"
+                        >
+                            <option value="">Country</option>
+                            <option
+                                v-for="country in countries"
+                                :value="country.country"
+                                >{{ country.country }}</option
+                            >
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3 text-right">
+                        <b>Age:</b>
+                    </div>
+                    <div class="col-8">
+                        <div class="row text-right">
+                            <div class="col-6">Min</div><input v-model="ranges.age_min" type="number" class="form-control col-6 text-center " style="padding: 0px"></input>
+                        </div>
+                        <div class="row text-right">
+                            <div class="col-6">Max</div><input v-model="ranges.age_max" type="number" class="form-control col-6 text-center" style="padding: 0px"></input>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3 text-right">
+                        <b>Points:</b>
+                    </div>
+                    <div class="col-8">
+                        <div class="row text-right">
+                            <span class="col-6">Min</span><input v-model="ranges.points_min" type="number" class="form-control col-6 text-center " style="padding: 0px"></input>
+                        </div>
+                        <div class="row text-right">
+                            <span class="col-6">Max</span><input v-model="ranges.points_max" type="number"  class="form-control col-6 text-center" style="padding: 0px"></input>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3 text-right">
+                        <b>Tournaments</b>
+                    </div>
+                    <div class="col-8">
+                        <div class="row text-right">
+                            <span class="col-6">Min</span><input v-model="ranges.tournaments_min" type="number"  class="form-control col-6 text-center " style="padding: 0px"></input>
+                        </div>
+                        <div class="row text-right">
+                            <span class="col-6">Max</span><input v-model="ranges.tournaments_max" type="number" class="form-control col-6 text-center" style="padding: 0px"></input>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
 
-            <table class="right table">
+            <table class="right table table-hover">
                 <thead class="thead-dark">
                     <tr>
-                        <th  scope="col">
-                            <div class="row">
+                        <th scope="col">
+                            <div class="row text-right">
                                 <a class="col-7" @click.prevent="changeSort('date')" href="">Date</a>
                                 <span class="col-2"
                                 v-if="
@@ -34,8 +182,8 @@
                                 >&darr;</span>
                             </div>
                         </th>
-                        <th scope="col">
-                            <div class="row text-center">
+                        <th scope="col" class= "d-none d-lg-block d-xl-block">
+                            <div class="row text-right">
                                 <a class="col-9" @click.prevent="changeSort('gender') "href="#">
                                 Category
                                 <span
@@ -52,16 +200,16 @@
                                 >&darr;</span></a>
                             </div>
                         </th>
-                        <th scope="col">
-                            <div class="row justify-content-end ">
-                                <a class="" @click.prevent="changeSort('type')" href="#">Type</a>
-                                <span class=""
+                        <th scope="col" >
+                            <div class="row text-center">
+                                <a class="col-6" @click.prevent="changeSort('type')" href="#">Type </a>
+                                <span class="col-6"
                                 v-if="
                                     this.params.sort_field == 'type' &&
                                         this.params.sort_direction == 'asc'
                                 "
                                     >&uarr;</span>
-                                <span class=""
+                                <span class="col-6"
                                     v-if="
                                         this.params.sort_field == 'type' &&
                                             this.params.sort_direction == 'desc'
@@ -70,7 +218,7 @@
                             </div>
                         </th>
                         <th scope="col">
-                            <div class="row justify-content-end">
+                            <div class="row justify-content-end text-right">
                                 <a class="" @click.prevent="changeSort('ranking')" href="#">Ranking</a>
                                 <span class=""
                                 v-if="
@@ -103,7 +251,7 @@
                                 >&darr;</span>
                             </div>
                         </th>
-                        <th scope="col">
+                        <th scope="col" class= "d-none d-lg-block d-xl-block">
                             <div class="row justify-content-end">
                                 <a class="" @click.prevent="changeSort('country')" href="#">Country</a>
                                 <span class=""
@@ -137,7 +285,7 @@
                                 >&darr;</span>
                             </div>
                         </th>
-                        <th scope="col">
+                        <th scope="col" class= "d-none d-lg-block d-xl-block">
                             <div class="row justify-content-end">
                                 <a class="" @click.prevent="changeSort('points')" href="#">Points</a>
                                 <span class=""
@@ -171,7 +319,7 @@
                                 >&darr;</span>
                             </div>
                         </th>
-                        <th class="text-right" scope="col">
+                        <th class="text-right d-none d-lg-block d-xl-block"scope="col">
                             Actions
                         </th>
 
@@ -179,119 +327,98 @@
                 </thead>
 
                 <tbody>
-                    <tr>
-                        <th class=" justify-content-end">
-                            <select v-model="params.date" class="form-control">
-                                <option value="">All dates</option>
-                                <option
-                                    v-for="date in dates"
-                                    :value="date.date"
-                                    >{{ date.date }}</option
-                                >
-                            </select>
-                        </th>
-                        <th class=" justify-content-end">
-                            <select
-                                v-model="params.gender"
-                                class="form-control"
-                            >
-                                <option value="">All Genders</option>
-                                <option
-                                    v-for="gender in genders"
-                                    :value="gender.gender"
-                                    >{{ gender.gender }}</option
-                                >
-                            </select>
-                        </th>
-                        <th class=" justify-content-end">
-                            <select v-model="params.type" class="form-control">
-                                <option value="">All Types</option>
-                                <option
-                                    v-for="ranking_type in types"
-                                    :value="ranking_type.type"
-                                    >{{ ranking_type.type }}</option
-                                >
-                            </select>
-                        </th>
-                        <th class=" justify-content-end">
-                            <div class="row">
-                                <span class="col-md-6">Min</span><input min="0" max="100" v-model="ranges.ranking_min" type="number"  class="form-control col-md-6 text-center " style="padding: 0px"></input>
-                            </div>
-                            <div class="row">
-                                <span class="col-md-6">Max</span><input min="0" max="100" v-model="ranges.ranking_max" type="number"  class="form-control col-md-6 text-center" style="padding: 0px"></input>
-                        </div>
-                        </th>
-                        <th class=" justify-content-end">
-                            <input v-model="search" class="form-control"></input>
-                        </th>
-                        <th class=" justify-content-end">
-                            <select
-                                v-model="params.country"
-                                class="form-control"
-                            >
-                                <option value="">Country</option>
-                                <option
-                                    v-for="country in countries"
-                                    :value="country.country"
-                                    >{{ country.country }}</option
-                                >
-                            </select>
-                        </th>
-                        <th class=" justify-content-end">
-                            <div class="row">
-                                <div class="col">Min<input v-model="ranges.age_min" type="number"  class="form-control text-center " style="padding: 0px; margin:auto; width:50%"></input></div>
-                            </div>
-                            <div class="row">
-                                <div class="col">Max</span><input v-model="ranges.age_max" type="number" class="form-control text-center" style="padding: 0px; margin:auto; width:50%"></input></div>
-                        </div>
-                        </th>
-                        <th class=" justify-content-end">
-                            <div class="row text-right">
-                                <span class="col-md-6">Min</span><input v-model="ranges.points_min" type="number" class="form-control col-md-6 text-center " style="padding: 0px"></input>
-                            </div>
-                            <div class="row text-right">
-                                <span class="col-md-6">Max</span><input v-model="ranges.points_max" type="number"  class="form-control col-md-6 text-center" style="padding: 0px"></input>
-                        </div>
-                        </th>
-                        <th class=" justify-content-end">
-                            <div class="row">
-                                <span class="col-md-6">Min</span><input v-model="ranges.tournaments_min" type="number"  class="form-control col-md-6 text-center " style="padding: 0px"></input>
-                            </div>
-                            <div class="row">
-                                <span class="col-md-6">Max</span><input v-model="ranges.tournaments_max" type="number" class="form-control col-md-6 text-center" style="padding: 0px"></input>
-                        </div>
-                        </th>
-                    </tr>
-                    <tr v-for="ranking in rankings.data">
-                        <td  scope="row">{{ ranking.date }}</td>
-                        <td class="text-center">{{ ranking.gender }}</td>
-                        <td class="text-right">{{ ranking.type }}</td>
-                        <td class="text-right">{{ ranking.ranking }}</td>
-                        <td class="text-right">{{ ranking.player }}</td>
-                        <td class="text-right">{{ ranking.country }}</td>
-                        <td class="text-right">{{ ranking.age }}</td>
-                        <td class="text-right">{{ ranking.points }}</td>
-                        <td class="text-right">{{ ranking.tournaments }}</td>
 
-                        <td class="text-right">
-                            <router-link
-                                data-toggle="tooltip" data-placement="top" title="Edit"
-                                class="action-button bi-pencil-square"
-                                :to="{
-                                    name: 'rankings.edit',
-                                    params: { id: ranking.id }
-                                }">
-                            </router-link>
-                            <i data-toggle="tooltip" data-placement="top" title="Delete" @click="delete_ranking(ranking.id)" class="action-button bi-trash" id="delete-button" style="border:0px; padding:0px; margin: 0px"></i>
-                        </td>
-                    </tr>
+                    <template v-for="ranking in rankings.data">
+                        <tr>
+                            <td class="text-left" scope="row">
+                                <i @click="showFields(ranking.id)" class="d-lg-none d-xl-none bi-plus-square-fill" style="font-size: 1.5rem; color: cornflowerblue;"></i>
+
+                                {{ ranking.date }}
+                            </td>
+                            <td class="d-none d-lg-block d-xl-block text-right">{{ ranking.gender }}</td>
+                            <td >{{ ranking.type }}</td>
+                            <td class="text-right">{{ ranking.ranking }}</td>
+                            <td class="text-right">{{ ranking.player }}</td>
+                            <td class="d-none d-lg-block d-xl-block text-right">{{ ranking.country }}</td>
+                            <td class="text-right">{{ ranking.age }}</td>
+                            <td class="d-none d-lg-block d-xl-block text-right">{{ ranking.points }}</td>
+                            <td class="text-right">{{ ranking.tournaments }}</td>
+
+                            <td class="d-none d-lg-block d-xl-block text-right">
+                                <router-link
+                                    data-toggle="tooltip" data-placement="top" title="Edit"
+
+                                    :to="{
+                                        name: 'rankings.edit',
+                                        params: { id: ranking.id }
+                                    }"
+                                    >
+                                    <i class="action-button bi-pencil-square" ></i>
+                                </router-link>
+                                <i data-toggle="tooltip" data-placement="top" title="Delete" @click="delete_ranking(ranking.id)" class="action-button bi-trash" id="delete-button"></i>
+                            </td>
+
+                        </tr>
+
+                        <tr class="d-lg-none d-xl-none">
+                            <td colspan="10" :id="ranking.id" style="display:none" :ref="ranking.id">
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        <b>Category:</b>
+                                    </div>
+                                    <div class="col-12">
+                                        {{ ranking.gender}}
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        <b>Country:</b>
+                                    </div>
+                                    <div class="col-12">
+                                        {{ ranking.country }}
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        <b>Points:</b>
+                                    </div>
+                                    <div class="col-12">
+                                        {{ ranking.points }}
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        <b>Actions:</b>
+                                    </div>
+                                    <div class="col-12">
+                                       <router-link
+                                         data-toggle="tooltip" data-placement="top" title="Edit"
+                                         :to="{
+                                        name: 'rankings.edit',
+                                        params: { id: ranking.id }
+                                        }"
+                                        >
+                                            <i class="action-button bi-pencil-square" ></i>
+                                        </router-link>
+                                        <i data-toggle="tooltip" data-placement="top" title="Delete" @click="delete_ranking(ranking.id)" class="action-button bi-trash" id="delete-button"></i>
+
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </template>
+
                 </tbody>
             </table>
         </div>
         <div
             v-if="view_method=='infinte_scroll' && rankings.data"
             v-observe-visiblity="handleScrolledToBottom"
-        >asd</div>
+        ></div>
         <div class="row">
             <pagination
                 v-if="view_method=='pagination'"
@@ -319,6 +446,7 @@ export default {
             view_method:"pagination",
             page: 1,
             last_page: 1,
+            filter_shown: false,
             ranges: {
                 ranking_min: 0,
                 ranking_max: 100,
@@ -495,6 +623,27 @@ export default {
                     }
 
                 });
+        },
+        showFields(id){
+            var div = (this.$refs[id])[0];
+            if(div.style.display == "none"){
+                div.style.display = "block"
+            }
+            else{
+                div.style.display = "none"
+            }
+
+        },
+        toggleFilter(){
+            var filter = this.$refs.filterer;
+            if(filter.style.display == "none"){
+                this.filter_shown = true;
+                filter.style.display = "block"
+            }
+            else{
+                this.filter_shown = false;
+                filter.style.display = "none"
+            }
         }
     }
 };
@@ -503,5 +652,13 @@ export default {
 <style>
     #delete-button{
         color:rgb(178,34,34);
+    }
+    .filter{
+        border:1px solid black;
+        margin: 10px;
+        padding: 20px 0px;
+    }
+    .filter-button{
+        cursor:pointer;
     }
 </style>

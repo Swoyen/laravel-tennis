@@ -1,7 +1,7 @@
 <template>
     <div>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="navbar-brand" href="#">Tennis Rankings</a>
 
             <div class="navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
@@ -32,7 +32,6 @@
                 <router-view></router-view>
             </transition-page>
         </div>
-        <footer>foot</footer>
     </div>
 </template>
 
