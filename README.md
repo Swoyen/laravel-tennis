@@ -56,4 +56,4 @@ updated_at = CURRENT_TIMESTAMP
 
 ## Project details
 
-Use 'php artisan serve' to host the project at 127.0.0.1:8000
+Hosted on elastic beanstalk
